@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
+            $table->string('task');
+            $table->text('description');
+            $table->date('due_date');
+            $table->enum('status',['pending', 'doing', 'done'])->default('pending');
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }
